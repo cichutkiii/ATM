@@ -24,7 +24,6 @@ namespace ATM
                     if (cl[clientIndex].pin != clBack.pin)
                     {
                         Console.WriteLine("Nieprawidlowy pin lub numer konta");    
-
                     }
                     else
                     {
@@ -32,20 +31,14 @@ namespace ATM
                         isLogged = true;
                         goodLogin = true;
                         Console.WriteLine("Zalogowano");    
-
                     }
-
                 }
                 else
                 {
                     Console.WriteLine("Nieprawidlowy pin lub numer konta");    
                 }
-
-                
             } while (!goodLogin);
-
             return clBack;
-
         }
 
         public static void CheckState(Client client)
@@ -80,7 +73,6 @@ namespace ATM
             else
             {
                 Console.WriteLine("Brak odpowiednich środków do wykonania transakcji");
-
             }
             
         }

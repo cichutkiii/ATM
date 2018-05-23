@@ -19,15 +19,13 @@ namespace ATM
             clients = ClientDB.getList();
             Client client = new Client();
 
-    
-
             bool exit = false;
             do
             {    
                 Console.WriteLine("Menu:");
                 Console.WriteLine("1. Zaloguj");
-                Console.WriteLine("2. Wpłata gotówki");
-                Console.WriteLine("3. Wypłata gotówki");
+                Console.WriteLine("2. Wpłata pieniędzy");
+                Console.WriteLine("3. Wypłata pieniędzy");
                 Console.WriteLine("4. Stan konta");
                 Console.WriteLine("5. Wyloguj");
                 Console.WriteLine("6. Zakończ");
