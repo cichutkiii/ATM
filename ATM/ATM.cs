@@ -5,7 +5,7 @@ namespace ATM
 {
     public class Atm
     {
-        public static List<Client> banndedList;
+        public static List<Client> banndedList = new List<Client>();
         public static bool isLogged = false;
         public static int clientIndex;
         public static Client LogIn(List<Client> cl)
@@ -18,7 +18,11 @@ namespace ATM
                 clBack.accountNumber = int.Parse(Console.ReadLine());
                 Console.WriteLine("podaj PIN");
                 clBack.pin = Int32.Parse(Console.ReadLine());
-
+                if(banndedList.Exists(x => x.accountNumber == clBack.accountNumber))
+                {
+                    Console.WriteLine("dane konto jest zablokowane");
+                    break;
+                }
                 if (cl.Exists(x => x.accountNumber == clBack.accountNumber))
                 {
                     
@@ -42,11 +46,14 @@ namespace ATM
                 {
                     Console.WriteLine("Nieprawidlowy pin lub numer konta");
                     tries--;
-                    if (tries == 0)
-                    {
-                        banndedList.Add(clBack);
-                        break;
-                    }
+                    
+                }
+                if (tries == 0)
+                {
+                    banndedList.Add(clBack);
+                    Console.WriteLine("Blokowanie konta");
+
+                    break;
                 }
             } while (!goodLogin);
             return clBack;
