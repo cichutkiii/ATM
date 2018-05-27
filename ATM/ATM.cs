@@ -5,12 +5,13 @@ namespace ATM
 {
     public class Atm
     {
-
+        public static List<Client> banndedList;
         public static bool isLogged = false;
         public static int clientIndex;
         public static Client LogIn(List<Client> cl)
         {   Client clBack = new Client();
             bool goodLogin = false;
+            int tries=3;
             do
             {
                 Console.WriteLine("podaj Numer konta");
@@ -20,10 +21,14 @@ namespace ATM
 
                 if (cl.Exists(x => x.accountNumber == clBack.accountNumber))
                 {
+                    
+                    
                     clientIndex = cl.FindIndex(x => x.accountNumber == clBack.accountNumber);
                     if (cl[clientIndex].pin != clBack.pin)
                     {
-                        Console.WriteLine("Nieprawidlowy pin lub numer konta");    
+                        Console.WriteLine("Nieprawidlowy pin lub numer konta");  
+                        tries--;
+
                     }
                     else
                     {
@@ -35,7 +40,13 @@ namespace ATM
                 }
                 else
                 {
-                    Console.WriteLine("Nieprawidlowy pin lub numer konta");    
+                    Console.WriteLine("Nieprawidlowy pin lub numer konta");
+                    tries--;
+                    if (tries == 0)
+                    {
+                        banndedList.Add(clBack);
+                        break;
+                    }
                 }
             } while (!goodLogin);
             return clBack;
